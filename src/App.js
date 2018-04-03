@@ -21,40 +21,61 @@ class App extends Component {
 	}
 	handleCardnumberChange = ({target}) => {
 		this.setState({
-			[target.name]: target.value
+			[target.name]: target.value.replace(/ /g, '')
 		})
-
 		var numberValidation = valid.number(target.value);
 
 		if (!numberValidation.isPotentiallyValid) {
-		// renderInvalidCardNumber();
-		console.log('Invalid card number')
+			  // renderInvalidCardNumber();
+			  console.log('Invalid card number')
 		}
 
 		if (numberValidation.card) {
-		console.log(numberValidation.card.type);
+			console.log(numberValidation.card.type);
 			this.setState({
 				cardType: numberValidation.card.niceType
 			})
 		}
 	}
-	handleInputChange = ({ target }) => {
-		if (target.name === 'cardNumber') {
-		  this.setState({
-			[target.name]: target.value.replace(/ /g, ''),
-		  });
-		}
-		else if (target.name === 'expMonth' || target.name === 'expYear') {
-		  this.setState({
+	handleExpMonthChange = ({target}) => {
+		this.setState({
 			[target.name]: target.value.replace(/ |\//g, ''),
-		  });
+		 });
+		var monthValidation = valid.expirationMonth(target.value);
+
+		if (!monthValidation.isPotentiallyValid) {
+			console.log('Invalid month')
 		}
-		else {
-		  this.setState({
-			[target.name]: target.value,
-		  });
+
+		if (monthValidation.card) {
+			console.log('valid month')
+			this.setState({
+				expMonth: target.value
+			})
 		}
-	  };
+	}
+	handleExpYearChange = ({target}) => {
+		this.setState({
+			[target.name]: target.value.replace(/ |\//g, ''),
+		 });
+		var yearValidation = valid.expirationDate(target.value);
+
+		if (!yearValidation.isPotentiallyValid) {
+			console.log('Invalid year')
+		}
+
+		if (yearValidation.card) {
+			console.log('valid year')
+			this.setState({
+				expYear: target.value
+			})
+		}
+	}
+	handleChange = ({target}) => {
+		this.setState({
+			[target.name]: target.value
+		})
+	}
 	render() {
 		return (
 			<div className="app">
@@ -77,8 +98,8 @@ class App extends Component {
 						<input  type="text" 
 								name="cardNumber"
 								id="cardnumber"
-								onChange={this.handleCardnumberChange}
-								onKeyUp={this.handleInputChange}
+								onKeyUp={this.handleCardnumberChange}
+								onChange={this.handleChange}
 								value={this.state.cardNumber}
 								placeholder="number"/>
 					</label>
@@ -86,15 +107,15 @@ class App extends Component {
 						<input 	type="text" 
 								name="expMonth"
 								id="month"
+								onKeyUp={this.handleExpMonthChange}
 								onChange={this.handleChange}
-								onKeyUp={this.handleInputChange}
 								value={this.state.expMonth}
 								placeholder="02"/>/
 						<input  type="text" 
 								name="expYear"
 								id="year"
+								onKeyUp={this.handleExpYearChange}
 								onChange={this.handleChange}
-								onKeyUp={this.handleInputChange}
 								value={this.state.expYear}
 								placeholder="18"/>
 					</label>
