@@ -9,6 +9,7 @@ import amex from './images/amex.svg'
 import maestro from './images/maestro.svg'
 import jcb from './images/jcb.svg'
 import union from './images/union.svg'
+import diners from './images/diners.svg'
 import chip from './images/chip-silver.png'
 
 const CardColor = glamorous.div(
@@ -33,7 +34,7 @@ const background = (type) => {
 		case 'Visa':
 			return 'blue'
 		case 'Mastercard':
-			return 'darkgrey'
+			return 'rgb(254, 167, 17)'
 		case 'Discover':
 			return 'black'
 		case 'American Express':
@@ -44,6 +45,8 @@ const background = (type) => {
 			return 'red'
 		case 'UnionPay':
 			return 'darkorange'
+		case 'Diners':
+			return 'rgb(255, 226, 176)'
 		default:
 			return 'grey'
 	}
@@ -96,10 +99,11 @@ class App extends Component {
 				  isValid: false
 			  })
 		} 
-		 if (numberValidation.card) {
+		if (numberValidation.card) {
 			console.log(numberValidation.card.niceType);
 			this.setState({
-				cardType: numberValidation.card.niceType
+				cardType: numberValidation.card.niceType,
+				isValid: true
 			})
 			if (this.state.cardType === 'Visa') {
 				this.setState({
@@ -126,9 +130,12 @@ class App extends Component {
 					cardImage: maestro
 				})
 			} else if (this.state.cardType === 'UnionPay') {
-				console.log(this.state.cardType)
 				this.setState({
 					cardImage: union
+				})
+			} else if (this.state.cardType === 'Diners Club') {
+				this.setState({
+					cardImage: diners
 				})
 			}
 		}
@@ -141,12 +148,16 @@ class App extends Component {
 
 		if (!monthValidation.isPotentiallyValid) {
 			console.log('Invalid month')
+			this.setState({
+				isValid: false
+			})
 		}
 
 		if (monthValidation.card) {
 			console.log('valid month')
 			this.setState({
-				expMonth: target.value
+				expMonth: target.value,
+				isValid: true
 			})
 		}
 	}
@@ -158,12 +169,16 @@ class App extends Component {
 
 		if (!yearValidation.isPotentiallyValid) {
 			console.log('Invalid year')
+			this.setState({
+				isValid: false
+			})
 		}
 
 		if (yearValidation.card) {
 			console.log('valid year')
 			this.setState({
-				expYear: target.value
+				expYear: target.value,
+				isValid: true
 			})
 		}
 	}
