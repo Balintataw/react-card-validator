@@ -20,9 +20,11 @@ const CardColor = glamorous.div(
 		width: '470px',
 		height: '300px',
 		borderRadius: '10px',
+		border: '1px solid black'
 	},
 	(props) => ({
 		backgroundColor: background(props.type),
+		border: error(props.val)
 	})
 )
 
@@ -31,7 +33,7 @@ const background = (type) => {
 		case 'Visa':
 			return 'blue'
 		case 'Mastercard':
-			return 'silver'
+			return 'darkgrey'
 		case 'Discover':
 			return 'black'
 		case 'American Express':
@@ -47,6 +49,13 @@ const background = (type) => {
 	}
 }
 
+const error = (check) => {
+	if( check === false) {
+		return '4px solid red'
+	}
+}
+// const ColorField = glamorous
+
 class App extends Component {
 	state = {
 		cardNumber: '',
@@ -55,7 +64,8 @@ class App extends Component {
 		cardholderName: '',
 		cvcNum: 'cvc',
 		cardType: '',
-		cardImage: ''
+		cardImage: '',
+		isValid: true
 	}
 	componentDidMount() {
 		document.title ="Card"
@@ -82,7 +92,8 @@ class App extends Component {
 			  console.log('Invalid card number')
 			  this.setState({
 				  cardType: '',
-				  cardImage: ''
+				  cardImage: '',
+				  isValid: false
 			  })
 		} 
 		 if (numberValidation.card) {
@@ -166,7 +177,7 @@ class App extends Component {
 		return (
 			<div className="app">
 				<div className="card-container">
-					<CardColor type={this.state.cardType} background-color="black" className="card">
+					<CardColor type={this.state.cardType} val={this.state.isValid} background-color="black" className="card">
 						<p className="bank-name">Your Bank</p>
 						<img src={chip} className="chip" alt="" />
 						<input value={this.state.cardNumber} className="number" placeholder="Card Number"/>
