@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Card';
+  src: url(./images/card-font.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
