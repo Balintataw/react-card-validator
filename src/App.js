@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import glamorous from 'glamorous'
 import valid from 'card-validator'
 import visa from './images/visa.svg'
 import disc from './images/discover.svg'
@@ -7,8 +8,44 @@ import mc from './images/mc.svg'
 import amex from './images/amex.svg'
 import maestro from './images/maestro.svg'
 import jcb from './images/jcb.svg'
+import union from './images/union.svg'
 import chip from './images/chip-silver.png'
 
+const CardColor = glamorous.div(
+	{
+		display: 'flex',
+		flexDirection: 'column',
+		marginLeft: '50px',
+		backgroundColor: 'blue',
+		width: '470px',
+		height: '300px',
+		borderRadius: '10px',
+	},
+	(props) => ({
+		backgroundColor: background(props.type),
+	})
+)
+
+const background = (type) => {
+	switch (type) {
+		case 'Visa':
+			return 'blue'
+		case 'Mastercard':
+			return 'silver'
+		case 'Discover':
+			return 'black'
+		case 'American Express':
+			return 'green'
+		case 'Maestro':
+			return 'darkblue'
+		case 'JCB':
+			return 'red'
+		case 'UnionPay':
+			return 'darkorange'
+		default:
+			return 'grey'
+	}
+}
 
 class App extends Component {
 	state = {
@@ -73,9 +110,14 @@ class App extends Component {
 				this.setState({
 					cardImage: jcb
 				})
-			} else if (this.cardType === 'Maestro') {
+			} else if (this.state.cardType === 'Maestro') {
 				this.setState({
 					cardImage: maestro
+				})
+			} else if (this.state.cardType === 'UnionPay') {
+				console.log(this.state.cardType)
+				this.setState({
+					cardImage: union
 				})
 			}
 		}
@@ -119,14 +161,15 @@ class App extends Component {
 			[target.name]: target.value
 		})
 	}
+
 	render() {
 		return (
 			<div className="app">
 				<div className="card-container">
-					<div className="card">
+					<CardColor type={this.state.cardType} background-color="black" className="card">
 						<p className="bank-name">Your Bank</p>
 						<img src={chip} className="chip" alt="" />
-						<input value={this.state.cardNumber} className="number" placeholder="**** **** **** ****" x-autocomplete="cc-number"/>
+						<input value={this.state.cardNumber} className="number" placeholder="Card Number"/>
 						<div>
 							<p className="valid">VALID THRU</p>
 							<input value={this.state.expMonth} className="month" placeholder="MM"/>
@@ -135,7 +178,7 @@ class App extends Component {
 							<img src={this.state.cardImage} id="card-logo" alt ='' />
 						</div>
 						<input value={this.state.cardholderName} className="name" placeholder="Your name"/>
-					</div> 
+					</CardColor> 
 				</div>
 				<form id="form-container" action="">
 					<input  type="text" 
@@ -144,29 +187,39 @@ class App extends Component {
 							onKeyUp={this.handleCardnumberChange}
 							onChange={this.handleChange}
 							value={this.state.cardNumber}
-							placeholder="card number"/>
+							/>
 					<input 	type="text" 
 							name="expMonth"
 							id="month"
 							onKeyUp={this.handleExpMonthChange}
 							onChange={this.handleChange}
 							value={this.state.expMonth}
-							placeholder="month"/>/
+							/>
 					<input  type="text" 
 							name="expYear"
 							id="year"
 							onKeyUp={this.handleExpYearChange}
 							onChange={this.handleChange}
 							value={this.state.expYear}
-							placeholder="year"/>
+							/>
 					<input  type="text" 
 							name="cardholderName"
 							id="name"
 							onChange={this.handleChange}
 							value={this.state.cardholderName}
-							placeholder="name"/>
+							/>
 					<input type="submit" />
 				</form>
+				<ul>
+					<li>Visa: 4111111111111111</li>
+					<li>Discover: 6011111111111117</li>
+					<li>MasterCard: 5111111111111118</li>
+					<li>Maestro: 5018111111111112</li>
+					<li>JCB: 3511111111111119</li>
+					<li>Union Pay: 6211111111111111</li>
+					<li>American Express: 371111111111114</li>
+					<li>Diners Club: 38111111111119</li>
+				</ul>
 			</div>
 		);
 	}

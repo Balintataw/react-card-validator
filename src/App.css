@@ -5,15 +5,55 @@
   margin-top: 20px;
 }
 
-#form-container input {
+/* #form-container input {
   height: 40px;
   padding-left: 10px;
   margin: 5px 5px 5px 20px;
   width: 200px;
-}
+} */
 
 input[type='submit'] {
   width: 100px;
+}
+
+#cardnumber {
+  position: absolute;
+  top: 265px;
+  left: 200px;
+  width:350px;
+  font-size:1.2rem;
+  opacity: 0;
+/*   border:none; */
+/*   background: transparent; */
+}
+
+#name {
+  position: absolute;
+  top: 352px;
+  left: 190px;
+  height: 20px;
+  width: 230px;
+  opacity: 0;
+}
+
+#month {
+  position:absolute;
+  top: 325px;
+  left: 360px;
+  width: 30px;
+  height:18px;
+  background: transparent;
+  opacity: 0;
+}
+
+#year {
+  position:absolute;
+  top: 325px;
+  left: 415px;
+  width: 30px;
+  height:18px;
+  background: transparent;
+  opacity: 0;
 }
 
 /* card style */
@@ -28,25 +68,25 @@ input[type='submit'] {
   font-family: 'Card';
   
   color: white;
-  border: 1px solid black;
+/*   border: 1px solid black; */
   /* background-image: url(./card_blank.jpg);
   background-repeat: no-repeat;
   background-size: cover; */
 }
 
 .card {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   margin-left: 50px;
   background-color: blue;
   width: 470px;
   height: 300px;
-  border-radius: 10px;
+  border-radius: 10px; */
 }
 
 ::placeholder {
   color: rgb(201, 201, 201);
-  letter-spacing: 0.4em;
+  letter-spacing: 0.5em;
 }
 
 .card input {
@@ -76,7 +116,7 @@ input[type='submit'] {
 
 .card .number {
   position: absolute;
-  top: 270px;
+  top: 265px;
   left: 200px;
   font-size: 1.25rem;
   width: 340px;
@@ -92,7 +132,7 @@ input[type='submit'] {
 
 .slash {
   position: absolute;
-  top: 305px;
+  top: 308px;
   left: 400px;
 }
 
@@ -120,4 +160,7 @@ input[type='submit'] {
   top: 300px;
   left: 480px;
   width: 100px;
+  height: 80px;
+  border: 1px solid silver;
+  border-radius: 5px;
 }
