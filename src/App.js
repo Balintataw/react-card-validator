@@ -57,7 +57,6 @@ const error = (check) => {
 		return '4px solid red'
 	}
 }
-// const ColorField = glamorous
 
 class App extends Component {
 	state = {
@@ -65,7 +64,7 @@ class App extends Component {
 		expMonth: '',
 		expYear: '',
 		cardholderName: '',
-		cvcNum: 'cvc',
+		securityCode: '',
 		cardType: '',
 		cardImage: '',
 		isValid: true
@@ -90,8 +89,8 @@ class App extends Component {
 		}
 		var numberValidation = valid.number(target.value);
 
+		//while card number is not valid
 		if (!numberValidation.isPotentiallyValid) {
-			  // renderInvalidCardNumber();
 			  console.log('Invalid card number')
 			  this.setState({
 				  cardType: '',
@@ -99,12 +98,14 @@ class App extends Component {
 				  isValid: false
 			  })
 		} 
+		//while card number is potentially valid
 		if (numberValidation.card) {
 			console.log(numberValidation.card.niceType);
 			this.setState({
 				cardType: numberValidation.card.niceType,
 				isValid: true
 			})
+			
 			if (this.state.cardType === 'Visa') {
 				this.setState({
 					cardImage: visa
@@ -140,6 +141,7 @@ class App extends Component {
 			}
 		}
 	}
+	//validates expiry month
 	handleExpMonthChange = ({target}) => {
 		this.setState({
 			[target.name]: target.value.replace(/ |\//g, ''),
@@ -161,6 +163,7 @@ class App extends Component {
 			})
 		}
 	}
+	//validates expiry year
 	handleExpYearChange = ({target}) => {
 		this.setState({
 			[target.name]: target.value.replace(/ |\//g, ''),
@@ -192,7 +195,7 @@ class App extends Component {
 		return (
 			<div className="app">
 				<div className="card-container">
-					<CardColor type={this.state.cardType} val={this.state.isValid} background-color="black" className="card">
+					<CardColor type={this.state.cardType} val={this.state.isValid} className="card">
 						<p className="bank-name">Your Bank</p>
 						<img src={chip} className="chip" alt="" />
 						<input value={this.state.cardNumber} className="number" placeholder="Card Number"/>
@@ -236,7 +239,7 @@ class App extends Component {
 							/>
 					<input type="submit" />
 				</form>
-				<ul>
+				<ul> {/*card examples*/}
 					<li>Visa: 4111111111111111</li>
 					<li>Discover: 6011111111111117</li>
 					<li>MasterCard: 5111111111111118</li>
