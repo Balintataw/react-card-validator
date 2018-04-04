@@ -33,17 +33,30 @@ class App extends Component {
 		if (!numberValidation.isPotentiallyValid) {
 			  // renderInvalidCardNumber();
 			  console.log('Invalid card number')
-		}
-
-		if (numberValidation.card) {
+			  this.setState({
+				  cardType: '',
+				  cardImage: ''
+			  })
+		} else if (numberValidation.card) {
 			console.log(numberValidation.card.niceType);
 			this.setState({
 				cardType: numberValidation.card.niceType
 			})
-			if (this.state.cardType == 'Visa') {
-				console.log('yes')
+			if (this.state.cardType === 'Visa') {
 				this.setState({
 					cardImage: visa
+				})
+			} else if (this.state.cardType === 'Discover') {
+				this.setState({
+					cardImage: disc
+				})
+			} else if (this.state.cardType === 'American Express') {
+				this.setState({
+					cardImage: amex
+				})
+			} else if (this.state.cardType === 'Mastercard') {
+				this.setState({
+					cardImage: mc
 				})
 			}
 		}
@@ -92,53 +105,44 @@ class App extends Component {
 			<div className="app">
 				<div className="card-container">
 					<div className="card">
-						<p>{this.state.cardType}</p>
-						<img src={this.state.cardImage} alt ={this.state.cardType} />
-						<p>Card No</p>
-						<input value={this.state.cardNumber} placeholder="**** **** **** ****"/>
+						<input value={this.state.cardNumber} className="number" placeholder="**** **** **** ****"/>
 						<div>
-							<p>Expiration</p>
-							<input value={this.state.expMonth} className="month" placeholder="02"/>/
+							<input value={this.state.expMonth} className="month" placeholder="02"/>
+							<p className="slash">/</p>
 							<input value={this.state.expYear} className="year" placeholder="19"/>
+							<img src={this.state.cardImage} id="card-logo" alt ='' />
 						</div>
-						<p>Cardholders Name</p>
-						<input value={this.state.cardholderName}/>
+						<input value={this.state.cardholderName} className="name"/>
 					</div> 
 				</div>
 				<form id="form-container" action="">
-					<label>cardnumber
-						<input  type="text" 
-								name="cardNumber"
-								id="cardnumber"
-								onKeyUp={this.handleCardnumberChange}
-								onChange={this.handleChange}
-								value={this.state.cardNumber}
-								placeholder="number"/>
-					</label>
-					<label>exp date
-						<input 	type="text" 
-								name="expMonth"
-								id="month"
-								onKeyUp={this.handleExpMonthChange}
-								onChange={this.handleChange}
-								value={this.state.expMonth}
-								placeholder="02"/>/
-						<input  type="text" 
-								name="expYear"
-								id="year"
-								onKeyUp={this.handleExpYearChange}
-								onChange={this.handleChange}
-								value={this.state.expYear}
-								placeholder="18"/>
-					</label>
-					<label>cardholder name
-						<input  type="text" 
-								name="cardholderName"
-								id="name"
-								onChange={this.handleChange}
-								value={this.state.cardholderName}
-								placeholder="name"/>
-					</label>
+					<input  type="text" 
+							name="cardNumber"
+							id="cardnumber"
+							onKeyUp={this.handleCardnumberChange}
+							onChange={this.handleChange}
+							value={this.state.cardNumber}
+							placeholder="card number"/>
+					<input 	type="text" 
+							name="expMonth"
+							id="month"
+							onKeyUp={this.handleExpMonthChange}
+							onChange={this.handleChange}
+							value={this.state.expMonth}
+							placeholder="month"/>/
+					<input  type="text" 
+							name="expYear"
+							id="year"
+							onKeyUp={this.handleExpYearChange}
+							onChange={this.handleChange}
+							value={this.state.expYear}
+							placeholder="year"/>
+					<input  type="text" 
+							name="cardholderName"
+							id="name"
+							onChange={this.handleChange}
+							value={this.state.cardholderName}
+							placeholder="name"/>
 					<input type="submit" />
 				</form>
 			</div>

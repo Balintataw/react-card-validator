@@ -5,13 +5,11 @@
   margin-top: 20px;
 }
 
-label {
-}
-
-input {
+#form-container input {
   height: 40px;
   padding-left: 10px;
   margin: 5px 5px 5px 20px;
+  width: 200px;
 }
 
 input[type='submit'] {
@@ -24,6 +22,7 @@ input[type='submit'] {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 700px;
   height: 500px;
   color: white;
@@ -36,19 +35,58 @@ input[type='submit'] {
 .card {
   display: flex;
   flex-direction: column;
-  /* width: 250px; */
-  /* height: 70px; */
   margin-left: 50px;
+}
+
+::placeholder {
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.4em;
 }
 
 .card input {
   border: none;
-  background: transparent;
-  height: 15px;
-  color: white;
+  background: rgb(118, 118, 118);
+  height: 25px;
+  color: rgb(0, 0, 0);
+}
+
+.card .number {
+  position: absolute;
+  top: 250px;
+  left: 260px;
+  font-size: 1rem;
+  width: 250px;
+  height: 30px;
 }
 
 .month, .year {
+  position: absolute;
+  top: 300px;
+  left: 420px;
   width: 20px;
-  padding-left: 5px;
+}
+
+.slash {
+  position: absolute;
+  top: 288px;
+  left: 408px;
+}
+
+.month {
+  left: 380px;
+}
+
+.name {
+  position: absolute;
+  top: 350px;
+  left: 190px;
+  width: 250px;
+  font-size: 1rem;
+}
+
+#card-logo {
+  position: absolute;
+  top: 300px;
+  left: 480px;
+  width: 100px;
 }
