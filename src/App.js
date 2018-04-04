@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import valid from 'card-validator'
+import visa from './images/visa.png'
+import disc from './images/discover.png'
+import mc from './images/mc.png'
+import amex from './images/amex.png'
 
 class App extends Component {
 	state = {
@@ -9,7 +13,8 @@ class App extends Component {
 		expYear: '',
 		cardholderName: '',
 		ccvNum: 'ccv',
-		cardType: ''
+		cardType: '',
+		cardImage: ''
 	}
 	componentDidMount() {
 		document.title ="Card"
@@ -31,10 +36,16 @@ class App extends Component {
 		}
 
 		if (numberValidation.card) {
-			console.log(numberValidation.card.type);
+			console.log(numberValidation.card.niceType);
 			this.setState({
 				cardType: numberValidation.card.niceType
 			})
+			if (this.state.cardType == 'Visa') {
+				console.log('yes')
+				this.setState({
+					cardImage: visa
+				})
+			}
 		}
 	}
 	handleExpMonthChange = ({target}) => {
@@ -82,6 +93,7 @@ class App extends Component {
 				<div className="card-container">
 					<div className="card">
 						<p>{this.state.cardType}</p>
+						<img src={this.state.cardImage} alt ={this.state.cardType} />
 						<p>Card No</p>
 						<input value={this.state.cardNumber} placeholder="**** **** **** ****"/>
 						<div>
