@@ -12,7 +12,7 @@ class App extends Component {
 		expMonth: '',
 		expYear: '',
 		cardholderName: '',
-		ccvNum: 'ccv',
+		cvcNum: 'cvc',
 		cardType: '',
 		cardImage: ''
 	}
@@ -25,9 +25,15 @@ class App extends Component {
 		})
 	}
 	handleCardnumberChange = ({target}) => {
-		this.setState({
-			[target.name]: target.value.replace(/ /g, '')
-		})
+		if (this.state.cardType === "Visa") {	
+			this.setState({
+				[target.name]: target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()
+			})
+		} else if (this.state.cardType === "American Express") {
+			this.setState({
+				[target.name]: target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})(.{6})/g, '$1 $2 ').trim()
+			})
+		}
 		var numberValidation = valid.number(target.value);
 
 		if (!numberValidation.isPotentiallyValid) {
@@ -37,7 +43,8 @@ class App extends Component {
 				  cardType: '',
 				  cardImage: ''
 			  })
-		} else if (numberValidation.card) {
+		} 
+		 if (numberValidation.card) {
 			console.log(numberValidation.card.niceType);
 			this.setState({
 				cardType: numberValidation.card.niceType
@@ -105,7 +112,7 @@ class App extends Component {
 			<div className="app">
 				<div className="card-container">
 					<div className="card">
-						<input value={this.state.cardNumber} className="number" placeholder="**** **** **** ****"/>
+						<input value={this.state.cardNumber} className="number" placeholder="**** **** **** ****" x-autocomplete="cc-number"/>
 						<div>
 							<input value={this.state.expMonth} className="month" placeholder="02"/>
 							<p className="slash">/</p>
