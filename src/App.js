@@ -263,7 +263,6 @@ class App extends Component {
 							/>
 					<input type="submit" />
 				</form>
-					<p>Click card to enter security code</p>	
 				</div>
 				<div className="back">
 					<p className="mag-strip"></p>
@@ -283,6 +282,8 @@ class App extends Component {
 				</div>
 				</div>
 				</label>
+				<p style={{marginLeft: '50px'}}>Click card to enter security code</p>	
+				
 				<ul> {/*card examples*/}
 					<li>Visa: 4111111111111111</li>
 					<li>Discover: 6011111111111117</li>
