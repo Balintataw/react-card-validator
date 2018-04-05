@@ -263,6 +263,7 @@ class App extends Component {
 							/>
 					<input type="submit" />
 				</form>
+					<p>Click card to enter security code</p>	
 				</div>
 				<div className="back">
 					<p className="mag-strip"></p>
