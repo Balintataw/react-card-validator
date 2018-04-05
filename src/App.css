@@ -194,7 +194,7 @@ label {
 }
 
 .card .back {
-    background: #222;
+    background: rgb(177, 177, 177);
     color: #FFF;
     height: 100%;
     width: 100%;
@@ -210,4 +210,43 @@ input[type='checkbox'] {
 :checked + .card {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
+}
+
+.mag-strip {
+  height: 50px;
+  width: 100%;
+  background-color: black;
+}
+
+.sig-line {
+  position: absolute;
+  height: 50px;
+  width: 75%;
+  top: 90px;
+  left: 20px;
+  background-color: antiquewhite;
+}
+
+.security-code {
+  position: absolute;
+  top: 76px;
+  left: 330px;
+  width: 60px;
+  height: 30px;
+}
+
+#secCode {
+  position: absolute;
+  width: 50px;
+  top: 180px;
+  left: 390px;
+  opacity: 0;
+  z-index: 5;
+}
+
+.secCode {
+  position: absolute;
+  width: 50px;
+  top: 180px;
+  left: 390px;
 }

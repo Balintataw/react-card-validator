@@ -64,6 +64,7 @@ class App extends Component {
 		expYear: '',
 		cardholderName: '',
 		securityCode: '',
+		securityCodeType: '',
 		cardType: '',
 		cardImage: '',
 		isValid: true
@@ -102,7 +103,8 @@ class App extends Component {
 			console.log(numberValidation.card.niceType);
 			this.setState({
 				cardType: numberValidation.card.niceType,
-				isValid: true
+				isValid: true,
+				securityCodeType: numberValidation.card.code.name
 			})
 			
 			if (this.state.cardType === 'Visa') {
@@ -184,6 +186,25 @@ class App extends Component {
 			})
 		}
 	}
+	handleSecurityCodeChange = ({target}) => {
+		this.setState({
+			[target.name]: target.value
+		})
+		var securityCodeValidation = valid.cvv(target.value)
+		if (!securityCodeValidation.isPotentiallyValid) {
+			console.log('invalid cvv')
+			this.setState({
+				isValid: false
+			})
+		}
+		if (securityCodeValidation.card) {
+			console.log('valid cvv')
+			this.setState({
+				securityCode: target.value,
+				isValid: true
+			})
+		}
+	}
 	handleChange = ({target}) => {
 		this.setState({
 			[target.name]: target.value
@@ -244,6 +265,20 @@ class App extends Component {
 				</form>
 				</div>
 				<div className="back">
+					<p className="mag-strip"></p>
+					<p className="sig-line"></p>
+					<p className="security-code">{this.state.securityCodeType}</p>
+					<input  type="text" 
+							name="securityCode"
+							id="secCode"
+							onKeyUp={this.handleSecurityCodeChange}
+							onChange={this.handleChange}
+							value={this.state.securityCode}
+							/>
+					<input  value={this.state.securityCode} 
+							className="secCode" 
+							placeholder="***"
+							/>
 				</div>
 				</div>
 				</label>
