@@ -16,12 +16,11 @@ const CardColor = glamorous.div(
 	{
 		display: 'flex',
 		flexDirection: 'column',
-		marginLeft: '50px',
 		backgroundColor: 'blue',
 		width: '470px',
 		height: '300px',
 		borderRadius: '10px',
-		border: '1px solid black'
+		border: '1px solid black',
 	},
 	(props) => ({
 		backgroundColor: background(props.type),
@@ -194,8 +193,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
+				<label>
+				<input type="checkbox" />
+				<div className="card">
+				<div className="front">
 				<div className="card-container">
-					<CardColor type={this.state.cardType} val={this.state.isValid} className="card">
+					<CardColor type={this.state.cardType} val={this.state.isValid}>
 						<p className="bank-name">Your Bank</p>
 						<img src={chip} className="chip" alt="" />
 						<input value={this.state.cardNumber} className="number" placeholder="Card Number"/>
@@ -239,6 +242,11 @@ class App extends Component {
 							/>
 					<input type="submit" />
 				</form>
+				</div>
+				<div className="back">
+				</div>
+				</div>
+				</label>
 				<ul> {/*card examples*/}
 					<li>Visa: 4111111111111111</li>
 					<li>Discover: 6011111111111117</li>

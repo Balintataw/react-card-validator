@@ -18,44 +18,43 @@ input[type='submit'] {
 
 #cardnumber {
   position: absolute;
-  top: 150px;
-  left: 50px;
+  top: 265px;
+  left: 200px;
   width:350px;
-  height:30px;
   font-size:1.2rem;
-  opacity: 0;
+  /* opacity: 0; */
 /*   border:none; */
   background: transparent;
 }
 
 #name {
   position: absolute;
-  top: 240px;
-  left: 50px;
-  height: 30px;
-  width: 300px;
-/*   background: transparent; */
-  opacity: 0;
+  top: 352px;
+  left: 190px;
+  height: 20px;
+  width: 230px;
+  background: transparent;
+  /* opacity: 0; */
 }
 
 #month {
   position:absolute;
-  top: 200px;
-  left: 238px;
-  width: 28px;
-  height:26px;
+  top: 325px;
+  left: 360px;
+  width: 30px;
+  height:18px;
   background: transparent;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 #year {
   position:absolute;
-  top: 200px;
-  left: 278px;
-  width: 28px;
-  height:26px;
+  top: 325px;
+  left: 415px;
+  width: 30px;
+  height:18px;
   background: transparent;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 /* card style */
@@ -89,22 +88,22 @@ input[type='submit'] {
 .bank-name {
   position: absolute;
   font-family: helvetica;
-  top: -70px;
-  left: 230px;
+  top: 100px;
+  left: 320px;
   font-size: 2.5rem;
 }
 
 .chip {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 160px;
+  left: 180px;
   width: 70px;
 }
 
 .card .number {
   position: absolute;
-  top: 150px;
-  left: 50px;
+  top: 265px;
+  left: 200px;
   font-size: 1.25rem;
   width: 340px;
   height: 30px;
@@ -112,8 +111,8 @@ input[type='submit'] {
 
 .month, .year {
   position: absolute;
-  top: 200px;
-  left: 280px;
+  top: 320px;
+  left: 420px;
   width: 25px;
 }
 
@@ -124,28 +123,28 @@ input[type='submit'] {
 }
 
 .month {
-  left: 240px;
+  left: 370px;
 }
 
 .valid {
   position: absolute;
-  top: 85px;
-  left: 235px;
+  top: 295px;
+  left: 370px;
   font-size: 0.7rem;
 }
 
 .name {
   position: absolute;
-  top: 240px;
-  left: 55px;
+  top: 350px;
+  left: 190px;
   width: 250px;
   font-size: 1.2rem;
 }
 
 #card-logo {
   position: absolute;
-  top: 200px;
-  left: 345px;
+  top: 300px;
+  left: 480px;
   width: 100px;
   height: 80px;
   border: 1px solid silver;
@@ -190,20 +189,19 @@ label {
     line-height: 200px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-/*     border-radius: 2px; */
+    border-radius: 2px;
 }
 
 .card .back {
     background: #222;
     color: #FFF;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
+    height: 100px;
+    width: 100px;
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
-input[type='checkbox'] {
+input {
   display: none;
 }
 
